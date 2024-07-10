@@ -1,5 +1,36 @@
 <?php require 'includes/header.php'; ?>
 <?php require 'config/connection.php'; ?>
+<?php
+
+        /**
+         * Retrieves all cities from the database and orders them by price in descending order.
+         *
+         * @param mysqli $connection The database connection object.
+         * @return array An array of cities, each represented as an associative array.
+         */
+        // Prepare a query
+        $city = $connection->prepare("SELECT * FROM cities ORDER BY price ASC LIMIT 5");
+
+        // Execute the query
+        $city->execute();
+
+        // Fetch results
+        $result = $city->get_result();
+        $allCities = $result->fetch_all(MYSQLI_ASSOC);
+
+
+        // Prepare a query
+        $region = $connection->prepare("SELECT * FROM regions");
+        
+        // Execute the query
+        $region->execute();
+      
+        // Fetch results
+        $regionResult = $region->get_result();
+        $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
+
+
+?>
 
 <!--HERO SECTION START-->
   <div class="page-heading">
@@ -27,9 +58,9 @@
               <div class="col-lg-4">
                   <fieldset>
                       <select name="country_id" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected>Destinations</option>
-                          <?php foreach($allCountries as $country) : ?>
-                            <option value="<?php echo $country->id; ?>"><?php echo $country->name; ?></option>
+                          <option selected>Regions</option>
+                          <?php foreach($allRegions as $region) : ?>
+                            <option value="<?php echo $region['id']; ?>"><?php echo $region['name']; ?></option>
                           <?php endforeach; ?>
                       </select>
                   </fieldset>
@@ -69,131 +100,35 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
           </div>
         </div>
-        <div class="col-lg-6 col-sm-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="image">
-                  <img src="assets/images/deals-01.jpg" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6 align-self-center">
-                <div class="content">
-                  <span class="info">*Limited Offer Today</span>
-                  <h4>Glasgow City Lorem</h4>
-                  <div class="row">
-                    <div class="col-6">
-                      <i class="fa fa-clock"></i>
-                      <span class="list">5 Days</span>
-                    </div>
-                    <div class="col-6">
-                      <i class="fa fa-map"></i>
-                      <span class="list">Daily Places</span>
-                    </div>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
-                  <div class="main-button">
-                    <a href="reservation.php">Make a Reservation</a>
+        <?php foreach($allCities as $city) : ?>
+          <div class="col-lg-6 col-sm-6">
+            <div class="item">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="image">
+                    <img src="assets/images/<?php echo $city['image']; ?>" alt="">
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="image">
-                  <img src="assets/images/deals-02.jpg" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6 align-self-center">
-                <div class="content">
-                  <span class="info">*Today & Tomorrow Only</span>
-                  <h4>Venezia Italy Ipsum</h4>
-                  <div class="row">
-                    <div class="col-6">
-                      <i class="fa fa-clock"></i>
-                      <span class="list">5 Days</span>
+                <div class="col-lg-6 align-self-center">
+                  <div class="content">
+                    <span class="info">*Limited Offer Today</span>
+                    <h4><?php echo $city['name']; ?></h4>
+                    <div class="row">
+                      <div class="col-6">
+                        <i class="fa fa-clock"></i>
+                        <span class="list"><?php echo $city['trip_days']; ?> days</span>
+                      </div>
                     </div>
-                    <div class="col-6">
-                      <i class="fa fa-map"></i>
-                      <span class="list">Daily Places</span>
+                    <p>Best deal price: GHC <?php echo $city['price']; ?></p>
+                    <div class="main-button">
+                      <a href="reservation.php?id=<?php echo $city['id'];?>">Make a Reservation</a>
                     </div>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
-                  <div class="main-button">
-                    <a href="reservation.php">Make a Reservation</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="image">
-                  <img src="assets/images/deals-03.jpg" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6 align-self-center">
-                <div class="content">
-                  <span class="info">**Undefined</span>
-                  <h4>Glasgow City Lorem</h4>
-                  <div class="row">
-                    <div class="col-6">
-                      <i class="fa fa-clock"></i>
-                      <span class="list">5 Days</span>
-                    </div>
-                    <div class="col-6">
-                      <i class="fa fa-map"></i>
-                      <span class="list">Daily Places</span>
-                    </div>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
-                  <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6">
-          <div class="item">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="image">
-                  <img src="assets/images/deals-04.jpg" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6 align-self-center">
-                <div class="content">
-                  <span class="info">*Offer Until 24th March</span>
-                  <h4>Glasgow City Lorem</h4>
-                  <div class="row">
-                    <div class="col-6">
-                      <i class="fa fa-clock"></i>
-                      <span class="list">5 Days</span>
-                    </div>
-                    <div class="col-6">
-                      <i class="fa fa-map"></i>
-                      <span class="list">Daily Places</span>
-                    </div>
-                  </div>
-                  <p>This free CSS template is provided by Template Mo website.</p>
-                  <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-       
+          </div> 
+        <?php endforeach; ?>      
       </div>
     </div>
   </div>
