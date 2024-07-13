@@ -57,8 +57,8 @@
               </div>
               <div class="col-lg-4">
                   <fieldset>
-                      <select name="country_id" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected>Regions</option>
+                      <select name="region_id" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                          <option selected>Destinations</option>
                           <?php foreach($allRegions as $region) : ?>
                             <option value="<?php echo $region['id']; ?>"><?php echo $region['name']; ?></option>
                           <?php endforeach; ?>
@@ -68,12 +68,12 @@
               <div class="col-lg-4">
                   <fieldset>
                       <select name="price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
-                          <option selected>Price Range</option>
-                          <option value="100">Less than $100</option>
-                          <option value="250">Less than $250</option>
-                          <option value="500">Less than $500</option>
-                          <option value="1000">Less than $1,000</option>
-                          <option value="2500">Less than $2,500</option>
+                          <option selected>Price range</option>
+                          <option value="100">Less than GHC 100</option>
+                          <option value="200">Less than GHC 200</option>
+                          <option value="300">Less than GHC 300</option>
+                          <option value="400">Less than GHC 400</option>
+                          <option value="500">Less than GHC 500</option>
                       </select>
                   </fieldset>
               </div>
@@ -97,7 +97,7 @@
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
             <h2>Best Weekly Offers In Each City</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <p>Get the best deals you like</p>
           </div>
         </div>
         <?php foreach($allCities as $city) : ?>
