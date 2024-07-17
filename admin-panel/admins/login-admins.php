@@ -1,5 +1,4 @@
 <?php require "../layout/header.php";
-require '../../config/connection.php';
 ?>
       <div class="row">
         <div class="col">
@@ -19,8 +18,6 @@ require '../../config/connection.php';
                     <input type="password" name="password" id="form2Example2" placeholder="Password" class="form-control" />
                     
                   </div>
-
-
 
                   <!-- Submit button -->
                   <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Login</button>

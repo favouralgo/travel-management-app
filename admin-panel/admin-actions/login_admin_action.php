@@ -2,7 +2,7 @@
 require '../../config/connection.php';
 
 // Define APPURL
-define("APPURL", "http://localhost/wooxtravel/");
+// define("APPURL", "http://localhost/wooxtravel/");
 
 
 
@@ -17,20 +17,23 @@ if(isset($_POST['submit'])) {
         echo "<script>alert('Please fill in all fields');</script>";
     } else {
         // Collect form data and store in variables
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $adminEmail = $_POST['email'];
+        $adminPassword = $_POST['password'];
         
         // Write a query to select a record from the users table using email
-        $sql = "SELECT * FROM admins WHERE email = '$email'";
+        $getAdminsql = "SELECT * FROM admins WHERE email = '$adminEmail'";
                     
         // Execute the query using the connection from the connection file
-        $result = mysqli_query($connection, $sql);
+        $adminResult = mysqli_query($connection, $getAdminsql);
         
         // Fetch the record
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
+        if (mysqli_num_rows($adminResult) > 0) {
+
+            $adminRows = mysqli_fetch_assoc($adminResult);
+            echo mysqli_num_rows($adminResult);
+            var_dump($adminRows);
             // Verify the password user provided against database record using the php method password_verify()
-            if (password_verify($password, $row['mypassword'])) {
+            if (password_verify($adminPassword, $adminRows['mypassword'])) {
                 // If verification is successful, store the user details in a session
                 // session_start();
                 // $_SESSION['user_id'] = $row['id'];
