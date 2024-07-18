@@ -2,7 +2,7 @@
 require '../../config/connection.php';
 
 // Define APPURL
-define("APPURL", "http://localhost/wooxtravel/");
+define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
 
 
 // Checks if user is already logged in
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
         $sqlAdmins = "SELECT * FROM admins WHERE email = '$adminEmail'";
                     
         // Execute the query using the connection from the connection file
-        $adminResult = mysqli_query($connection, $sql);
+        $adminResult = mysqli_query($connection, $sqlAdmins);
         
         // Fetch the record
         if (mysqli_num_rows($adminResult) > 0) {
