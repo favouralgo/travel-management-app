@@ -1,3 +1,7 @@
+<?php
+session_start();
+define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
