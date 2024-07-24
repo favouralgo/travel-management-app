@@ -37,13 +37,13 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
           </thead>
           <tbody>
             <?php foreach ($allRegions as $region): ?>
-              <tr>
+              <tr id="row-<?php echo $region['id']; ?>">
                 <th scope="row"><?php echo htmlspecialchars($region['id']); ?></th>
                 <td><?php echo htmlspecialchars($region['name']); ?></td>
                 <td><?php echo htmlspecialchars($region['population']); ?></td>
                 <td><?php echo htmlspecialchars($region['landmark']); ?></td>
                 <td><?php echo htmlspecialchars($region['description']); ?></td>
-                <td><a href="delete-region.php?id=<?php echo $region['id']; ?>" class="btn btn-danger text-center">Delete</a></td>
+                <td><button onclick="confirmDelete(<?php echo $region['id']; ?>)" class="btn btn-danger text-center">Delete</button></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -54,3 +54,44 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
 </div>
 
 <?php require "../layout/footer.php"; ?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you really want to delete this record?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: 'delete-region.php',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire('Deleted!', response.message, 'success');
+                        $("#row-" + id).remove(); // Remove the row from the DOM
+                    } else {
+                        Swal.fire('Error!', response.message || 'There was an error deleting the record.', 'error');
+                        if (response.debug) {
+                            console.error('Debug info:', response.debug);
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', status, error);
+                    Swal.fire('Error!', 'Failed to communicate with the server.', 'error');
+                }
+            });
+        }
+    });
+}
+
+</script>
