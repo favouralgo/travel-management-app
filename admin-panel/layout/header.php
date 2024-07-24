@@ -38,6 +38,9 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="<?php echo ADMINURL;?>admins/admins.php" style="margin-left: 20px;">Admins</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo ADMINURL;?>regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
             </li>
             <li class="nav-item">

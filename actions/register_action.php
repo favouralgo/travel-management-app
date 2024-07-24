@@ -6,9 +6,8 @@ require '../config/connection.php';
 define("APPURL", "http://localhost/wooxtravel/");
 
 // Checks if user is already logged in
-if (isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header("Location: " . APPURL);
-    exit();
 }
 
 $error = '';
