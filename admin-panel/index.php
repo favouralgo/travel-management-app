@@ -1,4 +1,9 @@
 <?php require "layout/header.php"; ?>
+
+<?php if(!isset($_SESSION["adminname"])){
+    header("Location: ".ADMINURL."admins/login-admins.php");
+}
+;?>
     <div class="container-fluid">
             
       <div class="row">
