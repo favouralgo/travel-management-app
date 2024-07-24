@@ -10,7 +10,7 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
     <title>Admin Panel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-     <link href="./styles/style.css" rel="stylesheet">
+     <link href="<?php echo ADMINURL;?>/styles/style.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
@@ -28,13 +28,13 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
         <?php if(isset($_SESSION['adminname'])):?>
           <ul class="navbar-nav side-nav" >
             <li class="nav-item">
-              <a class="nav-link" style="margin-left: 20px;" href="index.php">Home
+              <a class="nav-link" style="margin-left: 20px;" href="<?php echo ADMINURL;?>index.php">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo ADMINURL;?>admins/admins.php" style="margin-left: 20px;">Admins</a>
-            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="  ADD APP URL HERE admins/admins.php" style="margin-left: 20px;">Admins</a>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="<?php echo ADMINURL;?>regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
             </li>
@@ -48,8 +48,12 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
         <?php endif;?>
         <ul class="navbar-nav ml-md-auto d-md-flex">
         <?php if(!isset($_SESSION['adminname'])):?>
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo ADMINURL;?>admins/login-admins.php">Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo ADMINURL;?>admins/register-admins.php">Sign Up
               </a>
             </li>
         <?php else : ?>

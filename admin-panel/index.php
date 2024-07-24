@@ -17,9 +17,9 @@ $citiesResult = $connection->query($citiesQuery);
 $allCities = $citiesResult->fetch_object();
 
 // Query for admins
-$adminsQuery = "SELECT COUNT(*) AS admin_count FROM admins";
-$adminsResult = $connection->query($adminsQuery);
-$allAdmins = $adminsResult->fetch_object();
+// $adminsQuery = "SELECT COUNT(*) AS admin_count FROM admins";
+// $adminsResult = $connection->query($adminsQuery);
+// $allAdmins = $adminsResult->fetch_object();
 
 // Query for bookings
 $bookingsQuery = "SELECT COUNT(*) AS booking_count FROM bookings";
@@ -29,7 +29,7 @@ $allBookings = $bookingsResult->fetch_object();
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Regions</h5>
@@ -37,7 +37,7 @@ $allBookings = $bookingsResult->fetch_object();
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cities</h5>
@@ -45,15 +45,17 @@ $allBookings = $bookingsResult->fetch_object();
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+
+        <!-- <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Admins</h5>
                     <p class="card-text">No. of Admins: <?php echo htmlspecialchars($allAdmins->admin_count); ?></p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
+        </div> -->
+
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Bookings</h5>
