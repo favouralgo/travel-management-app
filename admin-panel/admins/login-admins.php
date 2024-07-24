@@ -1,37 +1,57 @@
 <?php require "../layout/header.php";?>
 <?php require '../../config/connection.php';?>
 
-<?php if(isset($_SESSION["adminname"])){
-    header("Location: ".ADMINURL."");
-}
-;?>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<title>Woox Travel </title>
+
+<!-- Bootstrap core CSS -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="../../assets/css/fontawesome.css">
+<link rel="stylesheet" href="../../assets/css/templatemo-woox-travel.css">
+<link rel="stylesheet" href="../../assets/css/owl.css">
+<link rel="stylesheet" href="../../assets/css/animate.css">
+<link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+</head>
+
+<div class="reservation-form">
+    <div class="container">
       <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title mt-5">Login</h5>
-              <form method="POST" class="p-auto" action="../admin-actions/login_admin_action.php">
-                  <!-- Email input -->
-                  <div class="form-outline mb-4">
-                    <input type="email" name="email" id="form2Example1" class="form-control" placeholder="Email" />
-                   
-                  </div>
+        
+        <div class="col-lg-12">
+          <form id="reservation-form" method="POST" role="search" action="../admin-actions/login_admin_action.php">
+            <div class="row">
+              <div class="col-lg-12">
+                <h4>Login</h4>
+              </div>
+              <div class="col-md-12">
+                  <fieldset>
+                      <label for="Name" class="form-label">Your Email</label>
+                      <input type="email" name="email" class="Name" placeholder="email" autocomplete="on" required>
+                  </fieldset>
+              </div>
 
-                  
-                  <!-- Password input -->
-                  <div class="form-outline mb-4">
-                    <input type="password" name="password" id="form2Example2" placeholder="Password" class="form-control" />
-                    
-                  </div>
-
-                  <!-- Submit button -->
-                  <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Login</button>
-
-                 
-                </form>
-
+              <div class="col-md-12">
+                <fieldset>
+                    <label for="Name" class="form-label">Your Password</label>
+                    <input type="password" name="password" class="Name" placeholder="password" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">                        
+                  <fieldset>
+                      <button type="submit" name="submit" class="main-button">Login</button>
+                  </fieldset>
+              </div>
             </div>
-       </div>
-<?php require "../layout/footer.php"; ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php require '../../includes/footer.php'; ?>

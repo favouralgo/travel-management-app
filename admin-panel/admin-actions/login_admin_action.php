@@ -6,6 +6,11 @@ session_start(); // Ensure the session is started
 // Define APPURL
 define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
 
+// Checks if admin is logged in already
+if(isset($_SESSION["adminname"])){
+    header("Location: ".ADMINURL."");
+}
+
 // Check if login button was clicked
 if(isset($_POST['submit'])) {
     if(empty($_POST['email']) || empty($_POST['password'])){
