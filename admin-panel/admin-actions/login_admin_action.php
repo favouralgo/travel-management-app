@@ -1,19 +1,15 @@
 <?php
 require '../../config/connection.php';
 
+session_start(); // Ensure the session is started
+
 // Define APPURL
 define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
-
-
-// Checks if user is already logged in
-// if(isset($_SESSION['adminname'])){
-//     header("Location: ".APPURL."");
-// }
 
 // Check if login button was clicked
 if(isset($_POST['submit'])) {
     if(empty($_POST['email']) || empty($_POST['password'])){
-        echo "<script>alert('Please fill in all fields');</script>";
+        echo "<script>alert('Please fill in all fields');</script>"; // Login password: Test2024!; Email: favourmdev@gmail.com
     } else {
         // Collect form data and store in variables
         $adminEmail = $_POST['email'];
@@ -31,13 +27,12 @@ if(isset($_POST['submit'])) {
             // Verify the password user provided against database record using the php method password_verify()
             if (password_verify($adminPassword, $adminRows['mypassword'])) {
                 // If verification is successful, store the user details in a session
-                // session_start();
                 $_SESSION['adminname'] = $adminRows['adminname'];
                 $_SESSION['user_id'] = $adminRows['id'];
-                    
+
                 // If login is successful, redirect to home page
                 header("Location: ".ADMINURL."");
-                //echo "<script>alert('Login successful');</script>";
+                exit(); // Make sure to exit after redirecting
             } else {
                 // If verification fails, provide the response
                 echo "<script>alert('Incorrect email or password');</script>";
@@ -45,8 +40,7 @@ if(isset($_POST['submit'])) {
         } else {
         // If no record found, provide response
         echo "<script>alert('Account not found');</script>";
+        }
     }
-}
-
 }
 ?>

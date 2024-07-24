@@ -25,43 +25,49 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
       </button>
 
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav side-nav" >
-          <li class="nav-item">
-            <a class="nav-link" style="margin-left: 20px;" href="index.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="countries-admins/show-country.html" style="margin-left: 20px;">Countries</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cities-admins/show-cities.html" style="margin-left: 20px;">Cities</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
-          </li>
-        </ul>
+        <?php if(isset($_SESSION['adminname'])):?>
+          <ul class="navbar-nav side-nav" >
+            <li class="nav-item">
+              <a class="nav-link" style="margin-left: 20px;" href="index.php">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admins/admins.php" style="margin-left: 20px;">Admins</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cities-admins/show-cities.php" style="margin-left: 20px;">Cities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bookings-admins/show-bookings.php" style="margin-left: 20px;">Bookings</a>
+            </li>
+          </ul>
+        <?php endif;?>
         <ul class="navbar-nav ml-md-auto d-md-flex">
+        <?php if(!isset($_SESSION['adminname'])):?>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home
+              <a class="nav-link" href="admins/login-admins.php">Login
+              </a>
+            </li>
+        <?php else : ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admins/login-admins.html">login
-            </a>
-          </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              username
+            <?php echo $_SESSION['adminname'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="<?php echo ADMINURL;?>/admins/logout.php">Logout</a>
               
           </li>
+        <?php endif;?>
                           
           
         </ul>
