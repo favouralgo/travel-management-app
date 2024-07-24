@@ -33,23 +33,23 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="admins/admins.php" style="margin-left: 20px;">Admins</a>
+              <a class="nav-link" href="<?php echo ADMINURL;?>admins/admins.php" style="margin-left: 20px;">Admins</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
+              <a class="nav-link" href="<?php echo ADMINURL;?>regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cities-admins/show-cities.php" style="margin-left: 20px;">Cities</a>
+              <a class="nav-link" href="<?php echo ADMINURL;?>cities-admins/show-cities.php" style="margin-left: 20px;">Cities</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bookings-admins/show-bookings.php" style="margin-left: 20px;">Bookings</a>
+              <a class="nav-link" href="<?php echo ADMINURL;?>bookings-admins/show-bookings.php" style="margin-left: 20px;">Bookings</a>
             </li>
           </ul>
         <?php endif;?>
         <ul class="navbar-nav ml-md-auto d-md-flex">
         <?php if(!isset($_SESSION['adminname'])):?>
           <li class="nav-item">
-              <a class="nav-link" href="admins/login-admins.php">Login
+              <a class="nav-link" href="<?php echo ADMINURL;?>admins/login-admins.php">Login
               </a>
             </li>
         <?php else : ?>
@@ -64,7 +64,7 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
             <?php echo $_SESSION['adminname'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<?php echo ADMINURL;?>/admins/logout.php">Logout</a>
+              <a class="dropdown-item" href="<?php echo ADMINURL;?>admins/logout.php">Logout</a>
               
           </li>
         <?php endif;?>

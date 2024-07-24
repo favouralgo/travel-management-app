@@ -1,5 +1,15 @@
-<?php require "../layout/header.php";
-?>
+<?php require "../layout/header.php";?>
+<?php require '../../config/connection.php';?>
+
+<?php if(isset($_SESSION["adminname"])){
+    header("Location: ".ADMINURL."");
+}
+
+
+
+;?>
+
+
       <div class="row">
         <div class="col">
           <div class="card">
