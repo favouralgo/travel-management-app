@@ -6,13 +6,18 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <!-- This file has been downloaded from Bootsnipp.com. -->
     <title>Admin Panel</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-     <link href="<?php echo ADMINURL;?>/styles/style.css" rel="stylesheet">
+    <link href="<?php echo ADMINURL;?>/styles/style.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        .navbar.bg-dark {
+            background-color: #22b3c1 !important;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -32,9 +37,6 @@ define("ADMINURL", "http://localhost/wooxtravel/admin-panel/")
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="  ADD APP URL HERE admins/admins.php" style="margin-left: 20px;">Admins</a>
-            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="<?php echo ADMINURL;?>regions-admins/show-region.php" style="margin-left: 20px;">Regions</a>
             </li>

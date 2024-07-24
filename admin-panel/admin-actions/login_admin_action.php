@@ -1,7 +1,7 @@
 <?php
 require '../../config/connection.php';
 
-session_start(); // Ensure the session is started
+session_start(); 
 
 // Define APPURL
 define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
