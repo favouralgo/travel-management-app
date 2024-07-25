@@ -32,28 +32,30 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4 d-inline">Cities</h5>
-              <a  href="create-cities.html" class="btn btn-primary mb-4 text-center float-right">Create cities</a>
+              <a  href="create-cities.php" class="btn btn-primary mb-4 text-center float-right">Create cities</a>
 
               <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">City ID</th>
                     <th scope="col">City Name</th>
-                    <th scope="col">image</th>
+                    
                     <th scope="col">Trip Days</th>
                     <th scope="col">Price</th>
                     <th scope="col">Region ID</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Berlin</td>
-                    <td>image</td>
-                    <td>3</td>
-                    <td>$1300</td>
-                     <td><a href="delete-posts.html" class="btn btn-danger  text-center ">delete</a></td>
+                  <?php foreach ($allCities as $city): ?>
+                  <tr id="row <?php echo $city['id']; ?>">
+                    <th scope="row"><?php echo htmlspecialchars($city['id']); ?></th>
+                    <td><?php echo htmlspecialchars($city['name']); ?></td>
+                    <td><?php echo htmlspecialchars($city['trip_days']); ?></td>
+                    <td><?php echo htmlspecialchars($city['price']); ?></td>
+                    <td><?php echo htmlspecialchars($city['region_id']); ?></td>
+                    <td><button onclick="confirmDelete(<?php echo $city['id']; ?>)" class="btn btn-danger text-center">Delete</button></td>
                   </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table> 
             </div>
@@ -61,3 +63,43 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
         </div>
       </div>
 <?php require "../layout/footer.php"; ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you really want to delete this record?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: 'delete-cities.php',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire('Deleted!', response.message, 'success');
+                        $("#row-" + id).remove(); // Remove the row from the DOM
+                    } else {
+                        Swal.fire('Error!', response.message || 'There was an error deleting the record.', 'error');
+                        if (response.debug) {
+                            console.error('Debug info:', response.debug);
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', status, error);
+                    Swal.fire('Error!', 'Failed to communicate with the server.', 'error');
+                }
+            });
+        }
+    });
+}
+
+</script>
