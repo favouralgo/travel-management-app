@@ -95,7 +95,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-
 <div class="row-2">
   <div class="col">
     <div class="card">
