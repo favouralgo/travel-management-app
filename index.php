@@ -4,7 +4,7 @@
 
 <?php
 
-// Getting regions and displaying them
+// Getting regions and displaying them --- TRUNCATE THE PRICES
 $query = "SELECT regions.id AS id, regions.name AS name, 
             regions.image AS image, regions.population AS population, regions.landmark AS landmark, 
             regions.description AS description, AVG(cities.price) AS average_price 

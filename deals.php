@@ -1,6 +1,7 @@
-<?php require 'includes/header.php'; ?>
-<?php require 'config/connection.php'; ?>
-<?php
+<?php require 'includes/header.php'; 
+require 'config/connection.php';
+session_start();
+
 
         /**
          * Retrieves all cities from the database and orders them by price in descending order.
@@ -106,7 +107,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="image">
-                    <img src="assets/images/<?php echo $city['image']; ?>" alt="">
+                    <img src="assets/images/<?php echo $city['image']; ?>" alt=""> <!--Change file path to fetch dynamically from city_images folder in cities-admins as directory path has changed. fetch from DB-->
                   </div>
                 </div>
                 <div class="col-lg-6 align-self-center">
@@ -120,9 +121,15 @@
                       </div>
                     </div>
                     <p>Best deal price: GHC <?php echo $city['price']; ?></p>
+                    <?php if(isset($_SESSION['username'])): ?>
                     <div class="main-button">
                       <a href="reservation.php?id=<?php echo $city['id'];?>">Make a Reservation</a>
                     </div>
+                    <?php else: ?>
+                    <div class="main-button">
+                      <a href="auth/login.php">Login to Make a Reservation</a>
+                    </div>
+                  <?php endif; ?>
                   </div>
                 </div>
               </div>

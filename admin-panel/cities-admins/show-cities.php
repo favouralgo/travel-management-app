@@ -47,7 +47,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
                 </thead>
                 <tbody>
                   <?php foreach ($allCities as $city): ?>
-                  <tr id="row <?php echo $city['id']; ?>">
+                  <tr id="<?php echo "row".$city['id']; ?>">
                     <th scope="row"><?php echo htmlspecialchars($city['id']); ?></th>
                     <td><?php echo htmlspecialchars($city['name']); ?></td>
                     <td><?php echo htmlspecialchars($city['trip_days']); ?></td>
@@ -85,7 +85,7 @@ function confirmDelete(id) {
                 success: function(response) {
                     if (response.status === 'success') {
                         Swal.fire('Deleted!', response.message, 'success');
-                        $("#row-" + id).remove(); // Remove the row from the DOM
+                        $("#row" + id).remove(); // Remove the row from the DOM
                     } else {
                         Swal.fire('Error!', response.message || 'There was an error deleting the record.', 'error');
                         if (response.debug) {

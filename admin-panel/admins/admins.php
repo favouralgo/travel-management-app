@@ -7,10 +7,10 @@ if (!isset($_SESSION["adminname"])) {
     header("location: ".ADMINURL."");
 }
 
-// Query for admins
+// Query for admins ----- CREATE A ROLE FOR SUPER ADMIN AND ANOTHER FOR OTHER ADMINS SUCH THAT ONLY THE SUPER ADMIN CAN ADD OTHER ADMINS AND SEE THE CREATE ADMIN BUTTON, OTHER ADMINS CAN SEE OTHER ADMIN BUT IF THEY ARE NOT SUPER ADMIN THEY SHOULD JUST SEE
 $adminsQuery = "SELECT * FROM admins";
 $adminsResult = $connection->query($adminsQuery);
-
+// ADMINS SHOULD NOT SEE CITY ID AND FOR THE REGIONS, THEY SHOULD ONLY SEE NAME AND NOT REGION_id
 ?>
 
 <div class="row-2">
