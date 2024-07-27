@@ -17,7 +17,6 @@ $bookingResult = $bookings->get_result();
 $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
 ?>
 
-
 <div class="row-2">
   <div class="col">
     <div class="card">
@@ -39,17 +38,23 @@ $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
             </tr>
           </thead>
           <tbody>
+            <?php foreach ($allBookings as $booking): ?>
             <tr>
-              <th scope="row">1</th>
-              <td>MOhamed</td>
-              <td>33333</td>
-              <td>4</td>
-              <td>23-3-19</td>
-              <td>Berlin</td>
-              <td>Pending</td>
-              <td>$104</td>
-               <td><a href="delete-posts.html" class="btn btn-danger  text-center ">delete</a></td>
+              <th scope="row"><?php echo $booking['id']; ?></th>
+              <td><?php echo htmlspecialchars($booking['name']); ?></td>
+              <td><?php echo htmlspecialchars($booking['phone_number']); ?></td>
+              <td><?php echo htmlspecialchars($booking['num_of_guests']); ?></td>
+              <td><?php echo htmlspecialchars($booking['checkin_date']); ?></td>
+              <td><?php echo htmlspecialchars($booking['destination']); ?></td>
+              <td><?php echo htmlspecialchars($booking['status']); ?></td>
+              <td><?php echo htmlspecialchars($booking['payment']); ?></td>
+              <?php if($booking['status'] == "Pending") :?>
+                <td><a href="status.php?id=<?php echo $booking['id']; ?>&status=<?php echo $booking['status']; ?>" class="btn btn-danger  text-center ">Pending</a></td>
+                      <?php else : ?>  
+                        <td><a href="status.php?id=<?php echo $booking['id']; ?>&status=<?php echo $booking['status']; ?>" class="btn btn-success  text-center ">Booked Successfully</a></td>
+              <?php endif; ?>
             </tr>
+            <?php endforeach; ?>
           </tbody>
         </table> 
       </div>

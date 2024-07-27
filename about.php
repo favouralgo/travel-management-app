@@ -132,8 +132,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                   <ul>
                     <li>Deal Includes:</li>
                     <li><i class="fa fa-taxi"></i> <?php echo $booking['trip_days']; ?> Days Trip > Hotel Included</li>
-                    <!-- <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
-                    <li><i class="fa fa-building"></i> Daily Places Visit</li> -->
                   </ul>
                   <?php if(isset($_SESSION['username'])): ?>
                     <div class="main-button">
