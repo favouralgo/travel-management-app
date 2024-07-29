@@ -1,6 +1,6 @@
-<?php require '../includes/header.php';?>
-<?php require '../config/connection.php';?>
 <?php 
+require '../includes/header.php';
+require '../config/connection.php';
     if(!isset($_SESSION['username'])){
         header("Location: ".APPURL."");
     }

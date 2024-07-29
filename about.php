@@ -1,7 +1,7 @@
-<?php require 'includes/header.php'; ?>
-<?php require 'config/connection.php'; ?>
+<?php 
+require 'includes/header.php';  
+require 'config/connection.php'; 
 
-<?php
 // Define APPURL
 define("APPURL", "http://localhost/wooxtravel/");
 

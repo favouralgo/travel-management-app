@@ -1,7 +1,8 @@
-<?php require "layout/header.php"; ?>
-<?php require '../config/connection.php';?>
+<?php 
+require "layout/header.php";
+require '../config/connection.php';
 
-<?php
+
 if (!isset($_SESSION["adminname"])) {
     header("Location: ".ADMINURL."admins/login-admins.php");
     exit();

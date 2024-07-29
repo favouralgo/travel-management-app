@@ -1,8 +1,9 @@
-<?php require 'includes/header.php'; ?>
-<?php require 'config/connection.php'; ?>
+<?php 
+require 'includes/header.php';
+require 'config/connection.php'; 
 
 
-<?php
+
 
 // Getting regions and displaying them --- TRUNCATE THE PRICES
 $query = "SELECT regions.id AS id, regions.name AS name, 

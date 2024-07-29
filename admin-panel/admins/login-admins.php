@@ -1,5 +1,7 @@
-<?php require "../layout/header.php";?>
-<?php require '../../config/connection.php';?>
+<?php 
+require "../layout/header.php";
+require '../../config/connection.php';
+ ?>
 
 <head>
 <meta charset="utf-8">

@@ -1,4 +1,5 @@
-<?php require 'includes/header.php';  
+<?php 
+require 'includes/header.php';  
 require 'config/connection.php';
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
