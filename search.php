@@ -49,7 +49,7 @@ require 'config/connection.php';
                 <div class="row">
                     <div class="col-lg-6">
                     <div class="image">
-                        <img src="assets/images/<?php echo $results['image']; ?>" alt="">
+                        <img src="<?php echo CITYIMAGES;?>/<?php echo $results['image']; ?>" alt="">
                     </div>
                     </div>
                     <div class="col-lg-6 align-self-center">

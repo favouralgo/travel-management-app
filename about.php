@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
               <?php foreach($specificimage as $image): ?>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/<?php echo $image['image']; ?>" alt="">
+                    <img src="<?php echo CITYIMAGES;?><?php echo $image['image']; ?>" alt="">
                     <h4><?php echo $image['name']; ?></h4>
                   </div>
                 </div>

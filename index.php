@@ -2,22 +2,18 @@
 require 'includes/header.php';
 require 'config/connection.php'; 
 
-
-
-
 // Getting regions and displaying them --- TRUNCATE THE PRICES
-$query = "SELECT regions.id AS id, regions.name AS name, 
+$query = $connection->prepare("SELECT regions.id AS id, regions.name AS name, 
             regions.image AS image, regions.population AS population, regions.landmark AS landmark, 
             regions.description AS description, AVG(cities.price) AS average_price 
-            FROM regions JOIN cities ON regions.id = cities.region_id GROUP BY(cities.region_id)";
-
-$result = mysqli_query($connection, $query);
-
-$regions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            FROM regions JOIN cities ON regions.id = cities.region_id GROUP BY(cities.region_id)");
+$query->execute();
+$result = $query->get_result();
+$regions = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
-  <!-- ***** Main Banner Area Start ***** -->
+<!-- ***** Main Banner Area Start ***** -->
   <section id="section-1">
     <div class="content-slider">
     <?php foreach($regions as $region): ?>
@@ -94,23 +90,23 @@ $regions = mysqli_fetch_all($result, MYSQLI_ASSOC);
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="assets/images/<?php echo $region['image']; ?>" alt="">
+                        <img src="<?php echo CITYIMAGES . htmlspecialchars($region['image']); ?>" alt="">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
                       <div class="right-content">
-                        <h4><?php echo $region['landmark']; ?></h4>
-                        <span><?php echo $region['name']; ?> Region</span>
+                        <h4><?php echo htmlspecialchars($region['landmark']); ?></h4>
+                        <span><?php echo htmlspecialchars($region['name']); ?> Region</span>
                         <div class="main-button">
                           <a href="about.php?id=<?php echo $region['id']; ?>">Explore More</a>
                         </div>
                         <p>
-                          <?php echo $region['description']; ?>
+                        <?php echo htmlspecialchars($region['description']); ?>
                         </p>
                         <ul class="info">
-                          <li><i class="fa fa-user"></i> <?php echo $region['population']; ?> People</li>
-                          <li><i class="fa fa-globe"></i> <?php echo $region['landmark']; ?></li>
-                          <li><i class="fa fa-home"></i> GHC <?php echo $region['average_price']; ?></li>
+                          <li><i class="fa fa-user"></i> <?php echo htmlspecialchars($region['population']);?> People</li>
+                          <li><i class="fa fa-globe"></i> <?php echo htmlspecialchars($region['landmark']); ?></li>
+                          <li><i class="fa fa-home"></i> GHC <?php echo htmlspecialchars($region['average_price']); ?></li>
                         </ul>
                         <div class="text-button">
                           <a href="about.php?=<?php echo $region['id']; ?>">Need Directions ? <i class="fa fa-arrow-right"></i></a>

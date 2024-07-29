@@ -21,13 +21,14 @@ if (isset($_POST['submit'])) {
         $target_dir = "uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0755, true);
-        }   
+        }
 
-        // Sanitize and generate a unique file name
+        // Get the original file name
         $original_name = basename($_FILES["image"]["name"]);
+
+        // Sanitize the file name
         $safe_name = preg_replace('/[^a-zA-Z0-9._-]/', '', $original_name);
-        $unique_name = uniqid() . "_" . $safe_name;
-        $target_file = $target_dir . $unique_name;
+        $target_file = $target_dir . $safe_name;
 
         // Get file extension and convert to lowercase
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -52,10 +53,10 @@ if (isset($_POST['submit'])) {
             exit;
         }
 
-        // File is uploaded, proceed to insert data
+        // Proceed to upload the file
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             // Assign the image path to a variable
-            $image = $target_file;
+            $image = $safe_name;
 
             // Sanitize the input data for SQL query
             $adminname = $connection->real_escape_string($adminname);
