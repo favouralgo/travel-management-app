@@ -1,7 +1,7 @@
-<?php require 'includes/header.php'; ?>
-<?php require 'config/connection.php'; ?>
-<?php
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+<?php require 'includes/header.php';  
+require 'config/connection.php';
+
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Check for empty fields
         if (empty($_POST['region_id']) || empty($_POST['price'])) {
             echo "<script>alert('Please fill out all fields');</script>";
