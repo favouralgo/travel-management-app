@@ -34,7 +34,7 @@ $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
               <th scope="col">Destination</th>
               <th scope="col">Status</th>
               <th scope="col">Payment (GHC)</th>
-              <th scope="col">Delete</th>
+              <th scope="col">Change Status</th>
             </tr>
           </thead>
           <tbody>
