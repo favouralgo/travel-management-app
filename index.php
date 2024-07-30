@@ -47,7 +47,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
                         <div class="main-button">
-                          <a href="about.php?=<?php echo $region['id']; ?>">Explore More</a>
+                          <a href="about.php?id=<?php echo $region['id']; ?>">Explore More</a>
                         </div>
                       </div>
                     </div>
@@ -109,7 +109,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                           <li><i class="fa fa-home"></i> GHC <?php echo htmlspecialchars($region['average_price']); ?></li>
                         </ul>
                         <div class="text-button">
-                          <a href="about.php?=<?php echo $region['id']; ?>">Need Directions ? <i class="fa fa-arrow-right"></i></a>
+                          <a href="about.php?id=<?php echo $region['id']; ?>">Need Directions ? <i class="fa fa-arrow-right"></i></a>
                         </div>
                       </div>
                     </div>

@@ -112,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
             <h2>Best Weekly Offers In Each City</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <p>We offer the best deals you can think that you will ask for more</p>
           </div>
         </div>
       </div>
