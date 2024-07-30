@@ -8,8 +8,8 @@ define("CITYIMAGES","city_images/");
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!-- This file has been downloaded from Bootsnipp.com. -->
-    <title>Admin Panel</title>
+    <!-- This file was downloaded from Bootsnipp.com. -->
+    <title>Wooxtravel Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo ADMINURL;?>/styles/style.css" rel="stylesheet">
@@ -25,7 +25,7 @@ define("CITYIMAGES","city_images/");
 <div id="wrapper">
     <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
       <div class="container">
-      <a class="navbar-brand" href="#">LOGO</a>
+      <a class="navbar-brand" href="../index.php">Wooxtravel</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -59,13 +59,13 @@ define("CITYIMAGES","city_images/");
               <a class="nav-link" href="<?php echo ADMINURL;?>admins/login-admins.php">Login
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="<?php echo ADMINURL;?>admins/register-admins.php">Sign Up
               </a>
-            </li>
+            </li> -->
         <?php else : ?>
           <li class="nav-item">
-            <a class="nav-link" href="index.php">Home
+            <a class="nav-link" href="./index.php">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>

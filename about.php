@@ -2,8 +2,6 @@
 require 'includes/header.php';  
 require 'config/connection.php'; 
 
-// Define APPURL
-define("APPURL", "http://localhost/wooxtravel/");
 
 /**
  * Retrieves user information based on the provided ID.
