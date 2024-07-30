@@ -1,31 +1,32 @@
 <?php 
 require '../includes/header.php';
 require '../config/connection.php';
-    if(!isset($_SESSION['username'])){
-        header("Location: ".APPURL."");
-    }
-    /**
-     * Retrieves and displays the username of a user's booking based on the provided user ID.
-     *
-     * @param int $id The ID of the user.
-     * @return void
-     */
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        // Use a prepared statement
-        $allBookings = $connection->prepare("SELECT * FROM bookings WHERE user_id = '$id'");
-        //$allBookings->bind_param("i", $id);
-        $allBookings->execute();
-        $result = $allBookings->get_result();
-        $userBookinginfo = $result->fetch_all(MYSQLI_ASSOC);
-        // $allBookings->close();
-    }else{
-        header("location: ../404.php");
-    }
 
+if(!isset($_SESSION['username'])){
+    header("Location: ".APPURL."");
+    exit();
+}
 
+/**
+ * Retrieves and displays the username of a user's booking based on the provided user ID.
+ *
+ * @param int $id The ID of the user.
+ * @return void
+ */
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    // Use a prepared statement
+    $allBookings = $connection->prepare("SELECT * FROM bookings WHERE user_id = ?");
+    $allBookings->bind_param("i", $id);
+    $allBookings->execute();
+    $result = $allBookings->get_result();
+    $userBookinginfo = $result->fetch_all(MYSQLI_ASSOC);
+    $allBookings->close();
+} else {
+    header("location: ../404.php");
+    exit();
+}
 ?>
-
 
 <div class="container">
     <div class="row">
@@ -41,18 +42,26 @@ require '../config/connection.php';
                 <th scope="col">Destination</th>
                 <th scope="col">Status</th>
                 <th scope="col">Payment</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($userBookinginfo as $booking):?>
                     <tr>
-                        <td><?php echo  $booking['name'];?></td>
-                        <td><?php echo  $booking['phone_number'];?></td>
-                        <td><?php echo  $booking['num_of_guests'];?></td>
-                        <td><?php echo  $booking['checkin_date'];?></td>
-                        <td><?php echo  $booking['destination'];?></td>
-                        <td><?php echo  $booking['status'];?></td>
-                        <td>GHC <?php echo  $booking['payment'];?></td>
+                        <td><?php echo htmlspecialchars($booking['name']);?></td>
+                        <td><?php echo htmlspecialchars($booking['phone_number']);?></td>
+                        <td><?php echo htmlspecialchars($booking['num_of_guests']);?></td>
+                        <td><?php echo htmlspecialchars($booking['checkin_date']);?></td>
+                        <td><?php echo htmlspecialchars($booking['destination']);?></td>
+                        <td><?php echo htmlspecialchars($booking['status']);?></td>
+                        <td>GHC <?php echo htmlspecialchars($booking['payment']);?></td>
+                        <td>
+                            <!-- Delete button -->
+                            <form action="delete_booking.php" method="POST" style="display:inline;">
+                                <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($booking['id']);?>">
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach;?>
             </tbody>
