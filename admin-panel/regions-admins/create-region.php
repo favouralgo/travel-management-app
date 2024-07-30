@@ -2,21 +2,24 @@
 require "../layout/header.php"; 
 require "../../config/connection.php"; 
 
-
 if (!isset($_SESSION["adminname"])) {
     header("location: " . ADMINURL);
     exit();
 }
+?>
+<!-- Add SweetAlert2 library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-if (isset($_POST['submit'])) {
-    if (empty($_POST['adminname']) || empty($_POST['population']) || empty($_POST['landmark']) || empty($_POST['description']) || empty($_FILES['image']['name'])) {
-        echo "<script>alert('Some inputs are empty');</script>";
+<?php if (isset($_POST['submit'])) {
+    $adminname = htmlspecialchars(trim($_POST['adminname']));
+    $population = intval($_POST['population']);
+    $landmark = htmlspecialchars(trim($_POST['landmark']));
+    $description = htmlspecialchars(trim($_POST['description']));
+    $imageError = '';
+
+    if (empty($adminname) || empty($population) || empty($landmark) || empty($description) || empty($_FILES['image']['name'])) {
+        $error = "Some inputs are empty";
     } else {
-        $adminname = htmlspecialchars(trim($_POST['adminname']));
-        $population = intval($_POST['population']);
-        $landmark = htmlspecialchars(trim($_POST['landmark']));
-        $description = htmlspecialchars(trim($_POST['description']));
-
         // Handle file upload
         $target_dir = "uploads/";
         if (!is_dir($target_dir)) {
@@ -25,91 +28,110 @@ if (isset($_POST['submit'])) {
 
         // Get the original file name
         $original_name = basename($_FILES["image"]["name"]);
-
-        // Sanitize the file name
         $safe_name = preg_replace('/[^a-zA-Z0-9._-]/', '', $original_name);
         $target_file = $target_dir . $safe_name;
-
-        // Get file extension and convert to lowercase
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if image file is an actual image or fake image
         $check = getimagesize($_FILES["image"]["tmp_name"]);
         if ($check === false) {
-            echo "<script>alert('File is not an image.');</script>";
-            exit;
-        }
-
-        // Check file size (should not exceed maximum of 5MB)
-        if ($_FILES["image"]["size"] > 5000000) {
-            echo "<script>alert('Sorry, your file is too large.');</script>";
-            exit;
-        }
-
-        // Allow certain file formats
-        $allowed_types = array("jpg", "jpeg", "png", "gif");
-        if (!in_array($imageFileType, $allowed_types)) {
-            echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
-            exit;
-        }
-
-        // Proceed to upload the file
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            // Assign the image path to a variable
-            $image = $safe_name;
-
-            // Sanitize the input data for SQL query
-            $adminname = $connection->real_escape_string($adminname);
-            $image = $connection->real_escape_string($image);
-            $population = $connection->real_escape_string($population);
-            $landmark = $connection->real_escape_string($landmark);
-            $description = $connection->real_escape_string($description);
-
-            // Create the SQL query
-            $query = "INSERT INTO regions (name, image, population, landmark, description) VALUES ('$adminname', '$image', $population, '$landmark', '$description')";
-
-            // Execute the query
-            if ($connection->query($query) === TRUE) {
-                echo "<script>alert('Record inserted successfully');</script>";
-                // Redirect to 'show-region.php' after successful insertion
-                header("Location: show-region.php");
-            } else {
-                echo "<script>alert('Error inserting record: " . $connection->error . "');</script>";
-            }
+            $imageError = "File is not an image.";
+        } elseif ($_FILES["image"]["size"] > 5000000) {
+            $imageError = "Sorry, your file is too large.";
+        } elseif (!in_array($imageFileType, ["jpg", "jpeg", "png", "gif"])) {
+            $imageError = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         } else {
-            echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $image = $safe_name;
+                $adminname = $connection->real_escape_string($adminname);
+                $image = $connection->real_escape_string($image);
+                $population = $connection->real_escape_string($population);
+                $landmark = $connection->real_escape_string($landmark);
+                $description = $connection->real_escape_string($description);
+
+                $query = "INSERT INTO regions (name, image, population, landmark, description) VALUES ('$adminname', '$image', $population, '$landmark', '$description')";
+                if ($connection->query($query) === TRUE) {
+                    echo "<script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Region inserted successfully!',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                window.location.href = 'show-region.php';
+                            });
+                        });
+                    </script>";
+                    exit();
+                } else {
+                    $error = "Error inserting record: " . $connection->error;
+                }
+            } else {
+                $imageError = "Sorry, there was an error uploading your file.";
+            }
         }
     }
-}
 
+    if (!empty($error)) {
+        echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '" . htmlspecialchars($error, ENT_QUOTES, 'UTF-8') . "',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>";
+    }
+
+    if (!empty($imageError)) {
+        echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Image Error',
+                    text: '" . htmlspecialchars($imageError, ENT_QUOTES, 'UTF-8') . "',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>";
+    }
+}
 ?>
+
+
 
 <div class="row-2">
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title mb-5 d-inline">Create Regions</h5>
+                <!-- Back button -->
+                <a href="show-region.php" class="btn btn-secondary mb-4">
+                     Back
+                </a>
+                <h5 class="card-title text-center mb-5">Create Regions</h5>
                 <form method="POST" action="create-region.php" enctype="multipart/form-data">
                     <div class="form-outline mb-4 mt-4">
-                        <input type="text" name="adminname" id="form2Example1" class="form-control" placeholder="name" />
+                        <input type="text" name="adminname" id="form2Example1" class="form-control" placeholder="Name" />
                     </div>
                     <div class="form-outline mb-4 mt-4">
                         <input type="file" name="image" id="form2Example1" class="form-control" />
                     </div>  
                     <div class="form-outline mb-4 mt-4">
-                        <input type="text" name="population" id="form2Example1" class="form-control" placeholder="population" />
+                        <input type="text" name="population" id="form2Example1" class="form-control" placeholder="Population" />
                     </div> 
                     <div class="form-outline mb-4 mt-4">
-                        <input type="text" name="landmark" id="form2Example1" class="form-control" placeholder="landmark" />
+                        <input type="text" name="landmark" id="form2Example1" class="form-control" placeholder="Landmark" />
                     </div>
                     <div class="form-floating">
-                        <textarea name="description" class="form-control" placeholder="description" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea name="description" class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                     <br>
-                    <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Add</button>
+                    <button type="submit" name="submit" class="btn btn-primary mb-4 text-center">Add</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<?php require "../layout/footer.php"; ?> 
+<?php require "../layout/footer.php"; ?>

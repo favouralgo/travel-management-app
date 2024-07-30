@@ -26,7 +26,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Region ID</th>
+              
               <th scope="col">Name</th>
               <th scope="col">Population</th>
               <th scope="col">Image</th>
@@ -37,8 +37,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
           </thead>
           <tbody>
             <?php foreach ($allRegions as $region): ?>
-              <tr id="row-<?php echo $region['id']; ?>">
-                <th scope="row"><?php echo htmlspecialchars($region['id']); ?></th>
+              <tr id="<?php echo "row".$region['id']; ?>">
                 <td><?php echo htmlspecialchars($region['name']); ?></td>
                 <td><?php echo htmlspecialchars($region['population']); ?></td>
                 <td><img src="<?php echo REGIONIMAGES . htmlspecialchars($region['image']); ?>" alt="Region Image" style="width: 100px; height: 100px;"></td>
@@ -78,7 +77,7 @@ function confirmDelete(id) {
                 success: function(response) {
                     if (response.status === 'success') {
                         Swal.fire('Deleted!', response.message, 'success');
-                        $("#row-" + id).remove(); // Remove the row from the DOM
+                        $("#row" + id).remove(); // Remove the row from the DOM
                     } else {
                         Swal.fire('Error!', response.message || 'There was an error deleting the record.', 'error');
                         if (response.debug) {

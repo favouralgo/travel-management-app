@@ -57,3 +57,4 @@ if (!empty($unexpected_output)) {
 // Send the response
 echo json_encode($response);
 exit();
+?>
