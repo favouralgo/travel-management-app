@@ -32,7 +32,7 @@ $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
               <th scope="col">Number of Guests</th>
               <th scope="col">Checkin Date</th>
               <th scope="col">Destination</th>
-              <th scope="col">Status</th>
+              <!-- <th scope="col">Status</th> -->
               <th scope="col">Payment (GHC)</th>
               <th scope="col">Change Status</th>
             </tr>
@@ -46,10 +46,10 @@ $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
               <td><?php echo htmlspecialchars($booking['num_of_guests']); ?></td>
               <td><?php echo htmlspecialchars($booking['checkin_date']); ?></td>
               <td><?php echo htmlspecialchars($booking['destination']); ?></td>
-              <td><?php echo htmlspecialchars($booking['status']); ?></td>
+              <!-- <td><?php echo htmlspecialchars($booking['status']); ?></td> -->
               <td><?php echo htmlspecialchars($booking['payment']); ?></td>
               <?php if($booking['status'] == "Pending") :?>
-                <td><a href="status.php?id=<?php echo $booking['id']; ?>&status=<?php echo $booking['status']; ?>" class="btn btn-danger  text-center ">Pending</a></td>
+                <td><a href="status.php?id=<?php echo $booking['id']; ?>&status=<?php echo $booking['status']; ?>" class="btn btn-warning  text-center ">Pending</a></td>
                       <?php else : ?>  
                         <td><a href="status.php?id=<?php echo $booking['id']; ?>&status=<?php echo $booking['status']; ?>" class="btn btn-success  text-center ">Booked Successfully</a></td>
               <?php endif; ?>

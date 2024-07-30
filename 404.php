@@ -14,4 +14,3 @@ require "config/connection.php"; ?>
             </div>
         </div>
 <?php require "includes/footer.php"; ?>
-// ADMINS SHOULD NOT SEE CITY ID AND FOR THE REGIONS, THEY SHOULD ONLY SEE NAME AND NOT REGION_id
