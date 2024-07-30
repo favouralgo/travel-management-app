@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
             <?php foreach($bookings as $booking): ?>
               <div class="item">
               <div class="thumb">
-                <img src="assets/images/<?php echo $booking['image']; ?>" alt="">
+                <img src="<?php echo CITYIMAGES;?><?php echo $booking['image']; ?>" alt="">
                 <div class="text">
                   <h4><?php echo $booking['name']; ?><br><span><i class="fa fa-users"></i> <?php echo $booking['booking_no']; ?> Check Ins</span></h4>
                   <h6>GHC <?php echo $booking['price']; ?><br><span>/person</span></h6>

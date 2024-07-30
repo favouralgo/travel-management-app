@@ -2,8 +2,8 @@
 
 session_start();
 define("APPURL","http://localhost/wooxtravel/");
-define("REGIONIMAGES","http://localhost/wooxtravel/admin-panel/regions-admins/uploads/");
-define("CITYIMAGES","http://localhost/wooxtravel/admin-panel/cities-admins/city_images/");
+define("REGIONIMAGES","admin-panel/regions-admins/uploads/");
+define("CITYIMAGES","admin-panel/cities-admins/city_images/");
 
 ?>
 

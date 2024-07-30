@@ -6,14 +6,14 @@ require 'config/connection.php';
 $query = $connection->prepare("SELECT regions.id AS id, regions.name AS name, 
             regions.image AS image, regions.population AS population, regions.landmark AS landmark, 
             regions.description AS description, AVG(cities.price) AS average_price 
-            FROM regions JOIN cities ON regions.id = cities.region_id GROUP BY(cities.region_id)");
+            FROM regions JOIN cities ON regions.id = cities.region_id GROUP BY regions.id, regions.name, regions.image, regions.population, regions.landmark, regions.description");
 $query->execute();
 $result = $query->get_result();
 $regions = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
-<!-- ***** Main Banner Area Start ***** -->
+<!-- ***** Main Banner Area Start ***** (cities.region_id)-->
   <section id="section-1">
     <div class="content-slider">
     <?php foreach($regions as $region): ?>
@@ -90,7 +90,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
                       <div class="image">
-                        <img src="<?php echo CITYIMAGES . htmlspecialchars($region['image']); ?>" alt="">
+                      <img src="<?php echo REGIONIMAGES . htmlspecialchars($region['image']); ?>" alt="">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">

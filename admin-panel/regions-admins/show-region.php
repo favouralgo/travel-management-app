@@ -29,6 +29,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
               <th scope="col">Region ID</th>
               <th scope="col">Name</th>
               <th scope="col">Population</th>
+              <th scope="col">Image</th>
               <th scope="col">Landmark</th>
               <th scope="col">Description</th>
               <th scope="col">Actions</th>
@@ -40,6 +41,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
                 <th scope="row"><?php echo htmlspecialchars($region['id']); ?></th>
                 <td><?php echo htmlspecialchars($region['name']); ?></td>
                 <td><?php echo htmlspecialchars($region['population']); ?></td>
+                <td><img src="<?php echo REGIONIMAGES . htmlspecialchars($region['image']); ?>" alt="Region Image" style="width: 100px; height: 100px;"></td>
                 <td><?php echo htmlspecialchars($region['landmark']); ?></td>
                 <td><?php echo htmlspecialchars($region['description']); ?></td>
                 <td><button onclick="confirmDelete(<?php echo $region['id']; ?>)" class="btn btn-danger text-center">Delete</button></td>
