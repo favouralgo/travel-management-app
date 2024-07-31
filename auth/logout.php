@@ -1,5 +1,5 @@
 <?php
-// include_once "../config/core.php";  
+// include_once "../config/connection.php";  
 
 
 session_start();

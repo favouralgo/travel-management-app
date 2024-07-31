@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
   $specificregion = mysqli_fetch_assoc($resultforregions);
 
 
-  //--------------- Write query to retrieve city images
+  //--------------- Query to retrieve city images
   $sqlforimages = "SELECT * FROM cities WHERE region_id = '$id'";
 
   // Establish and verify connection
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 
 
-  //------------ Write query to get number of bookings for display
+  //------------ Query to get number of bookings for display
   $sqlforbookings = "SELECT cities.id AS id, cities.name AS name, 
             cities.image AS image, cities.trip_days AS trip_days, cities.price AS price, 
             COUNT(bookings.city_id) AS booking_no 
@@ -119,6 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
       <div class="row">
         <div class="col-lg-12">
           <div class="owl-weekly-offers owl-carousel">
+              <!--Dynamically fetch data from database-->
             <?php foreach($bookings as $booking): ?>
               <div class="item">
               <div class="thumb">

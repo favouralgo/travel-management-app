@@ -81,6 +81,7 @@ if (isset($_SESSION['signup_success'])) {
     </div>
 </div>
 
+<!--The class style is referenced here for display to the users-->
 <style>
     .the-error-message { 
         color: red; 
@@ -92,6 +93,7 @@ if (isset($_SESSION['signup_success'])) {
     }
 </style>
 
+<!--The JavaScript snippet below ensures the error and success message disappears after 5 seconds -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const successMessage = document.querySelector('.the-success-message');

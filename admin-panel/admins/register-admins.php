@@ -1,3 +1,4 @@
+<!--THE URL TO THIS PAGE IS ONLY PROVIDED TO THE SUPER ADMIN, AS THEY HAVE AUTHORIZATION TO ADD OTHER ADMINS-->
 <?php 
 require "../layout/header.php"; 
 require '../../config/connection.php'; 
@@ -6,7 +7,7 @@ $errors = [];
 $signup_data = [];
 $signup_success = false;
 
-
+// Error handling using sessions and arrays
 if (isset($_SESSION['signup_errors'])) {
     $errors = $_SESSION['signup_errors'];
     unset($_SESSION['signup_errors']);
@@ -52,6 +53,7 @@ if (isset($_SESSION['signup_success'])) {
                         <div class="col-lg-12">
                             <h4>Register</h4>
                         </div>
+                        <!--Display errors if any-->
                         <?php if ($signup_success): ?>
                             <div class="the-success-message"><h2>Registration successful! You can now sign in.</h2></div>
                             <?php endif; ?>

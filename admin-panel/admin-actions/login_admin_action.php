@@ -6,7 +6,7 @@ require '../../config/connection.php';
 define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
 $errors = [];
 
-// Checks if admin is logged in already
+// Check if admin is logged in already
 if (isset($_SESSION["adminname"])) {
     header("Location: " . ADMINURL);
     exit();

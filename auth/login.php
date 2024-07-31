@@ -13,7 +13,7 @@ require '../includes/header.php';
                 <h4>Login</h4>
               </div>
               <?php
-                // Display login errors if any
+                // Display login errors if any using PHP sessions
                 if (isset($_SESSION['login_errors'])) {
                     foreach ($_SESSION['login_errors'] as $error) {
                         echo "<div class='the-error-message'>$error</div>";

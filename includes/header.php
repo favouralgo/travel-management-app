@@ -2,7 +2,11 @@
 
 session_start();
 define("APPURL","http://localhost/wooxtravel/");
+
+// Define route to images that are fetched from regions table
 define("REGIONIMAGES","admin-panel/regions-admins/uploads/");
+
+// Define route to images that are fetched from city table
 define("CITYIMAGES","admin-panel/cities-admins/city_images/");
 
 ?>

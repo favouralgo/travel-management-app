@@ -65,12 +65,15 @@ require '../../config/connection.php';
       </div>
     </div>
   </div>
+
+              <!--Error message is styled here-->
   <style>
     .the-error-message { 
         color: red; 
         margin-bottom: 10px;
       }
   </style>
+
   <!--The JavaScript snippet below ensures the error and success message disappears after 5 seconds -->
   <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -17,6 +17,7 @@ $bookingResult = $bookings->get_result();
 $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
 ?>
 
+<!--Data fetched is dynamically displayed-->
 <div class="row-2">
   <div class="col">
     <div class="card">
@@ -32,7 +33,6 @@ $allBookings = $bookingResult->fetch_all(MYSQLI_ASSOC);
               <th scope="col">Number of Guests</th>
               <th scope="col">Checkin Date</th>
               <th scope="col">Destination</th>
-              <!-- <th scope="col">Status</th> -->
               <th scope="col">Payment (GHC)</th>
               <th scope="col">Change Status</th>
             </tr>

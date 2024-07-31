@@ -34,6 +34,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                   <div class="more-info">
                     <div class="row">
                       <div class="col-lg-3 col-sm-6 col-6">
+        <!--Dynamically fetch data from database-->
                         <i class="fa fa-user"></i>
                         <h4><span>Population:</span><br><?php echo $region['population']; ?></h4>
                       </div>

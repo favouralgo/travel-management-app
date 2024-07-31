@@ -6,7 +6,7 @@ if (!isset($_SESSION["adminname"])) {
     header("location: " . ADMINURL);
     exit();
 }
-
+// Use JSON for rendering errors
 header('Content-Type: application/json');
 
 // Start output buffering to capture any unexpected output

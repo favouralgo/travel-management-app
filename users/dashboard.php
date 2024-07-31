@@ -45,6 +45,7 @@ if (isset($_GET['id'])) {
                     </tr>
                 </thead>
                 <tbody>
+<!--Dynamically fetch data from database-->
                     <?php foreach($userBookinginfo as $booking): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($booking['name']);?></td>
@@ -69,8 +70,10 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-<!-- SweetAlert2 JS -->
+<!-- SweetAlert2 JS to display error -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- SweetAlert2 JS to confirm deletion -->
 <script>
 document.querySelectorAll('.delete-form').forEach(form => {
     form.addEventListener('submit', function(e) {

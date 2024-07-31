@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $errors[] = "Admin already exists";
         } else {       
-            // Insert the new admin into the database with a role of 1
+            // Insert the new admin into the database with a role of 1 for super admins
             $stmt = $connection->prepare("INSERT INTO admins (adminname, email, mypassword, role) VALUES (?, ?, ?, 1)");
             $stmt->bind_param("sss", $adminname, $email, $hashed_password);
 

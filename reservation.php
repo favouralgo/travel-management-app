@@ -102,6 +102,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="col-lg-12">                        
                             <fieldset>
+<!--Double check so that if user bypasses file using the url, reservation is still checked with sessions-->
                                 <?php if ($isLoggedIn): ?>
                                     <button type="submit" class="main-button">Make Your Reservation</button>
                                 <?php else: ?>

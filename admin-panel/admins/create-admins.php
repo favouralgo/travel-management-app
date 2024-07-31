@@ -1,3 +1,4 @@
+<!--THIS PAGE IS FOR SUPER ADMINS, ADMINS ADDED THROUGH THIS PAGE ARE AUTOMATICALLY GIVEN A ROLE OF 2 AS THEY ARE SUBADMINS-->
 <?php 
 require "../layout/header.php";
 require "../../config/connection.php";

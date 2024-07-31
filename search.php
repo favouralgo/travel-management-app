@@ -43,6 +43,7 @@ require 'config/connection.php';
             <p>Get offers that you like</p>
           </div>
         </div>
+    <!--Loop through to get the images-->
         <?php foreach ($finalResult as $results) : ?>
             <div class="col-lg-6 col-sm-6">
                 <div class="item">

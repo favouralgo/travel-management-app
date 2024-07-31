@@ -1,18 +1,18 @@
 <?php
-    //host
+    //Defined host
     define("DB_SERVER","localhost");
 
-    //username
+    //Defined username
     define("DB_USERNAME","root");
 
-    //password
+    //No password
     define("DB_PASSWORD","");
 
-    //databasename
+    //Defined databasename
     define("DB_NAME","wooxtravel");
 
     
-
+    // Make connection
     $connection = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
     if($connection->connect_error){

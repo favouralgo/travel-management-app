@@ -1,7 +1,7 @@
 <?php require "../layout/header.php"; ?>      
 <?php require "../../config/connection.php"; ?>
 <?php 
-
+// THE UPDATE FUNCTION FOR THE 'CRUD' OPERATION IS HANDLED HERE
     if(!isset($_SESSION["adminname"])) {
         header("location: ".ADMINURL."");
     }

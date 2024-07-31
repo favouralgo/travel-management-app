@@ -31,6 +31,7 @@ if ($isSuperAdmin) {
     $result = $stmt->execute();
     $stmt->close();
 
+    // Output handled using JSON with document object model
     if ($result) {
         echo json_encode(['success' => true, 'message' => 'Admin deleted successfully']);
     } else {

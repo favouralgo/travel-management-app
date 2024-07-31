@@ -159,7 +159,7 @@ if (isset($_POST['submit'])) {
           <div class="form-outline mb-4 mt-4">
             <input type="text" name="price" id="form2Example4" class="form-control" placeholder="Price" />
           </div>
-          <!-- Region select -->
+          <!-- Region select which is dynamically fetched from database-->
           <div class="form-outline mb-4 mt-4">
             <select name="region_id" class="form-select form-control" aria-label="Choose Region">
               <option selected>Choose Region</option>

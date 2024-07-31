@@ -28,6 +28,7 @@ $bookingsResult = $connection->query($bookingsQuery);
 $allBookings = $bookingsResult->fetch_object();
 ?>
 
+<!--Landing page for all ADMINS-->
 <div class="container-fluid">
     <div class="row-2">
         <div class="col-md-4">

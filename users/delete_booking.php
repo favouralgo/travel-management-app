@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $stmt = $connection->prepare("DELETE FROM bookings WHERE id = ?");
     $stmt->bind_param("i", $booking_id);
     if ($stmt->execute()) {
-        // Redirect to the previous page or bookings page
+        // Redirect to the bookings page
         header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     } else {

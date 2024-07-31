@@ -43,6 +43,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
             <div class="col-lg-3">
               <fieldset>
                 <select name="region_id" class="form-select" aria-label="Default select example" id="chooseLocation">
+<!--Dynamically fetch data from database-->
                   <option value="">Destinations</option>
                   <?php foreach($allRegions as $region) : ?>
                     <option value="<?php echo $region['id']; ?>"><?php echo $region['name']; ?></option>
@@ -96,6 +97,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
           <p>Get the best deals you like</p>
         </div>
       </div>
+                  <!--Dynamically fetch data from database-->
       <?php foreach($allCities as $city) : ?>
           <div class="col-lg-6 col-sm-6 deal-item" data-region="<?php echo $city['region_id']; ?>" data-price="<?php echo $city['price']; ?>">
             <div class="item">

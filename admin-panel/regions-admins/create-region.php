@@ -31,7 +31,8 @@ if (!isset($_SESSION["adminname"])) {
         $safe_name = preg_replace('/[^a-zA-Z0-9._-]/', '', $original_name);
         $target_file = $target_dir . $safe_name;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+        
+        //Handling the image files and error display using SweetAlert
         $check = getimagesize($_FILES["image"]["tmp_name"]);
         if ($check === false) {
             $imageError = "File is not an image.";
@@ -101,7 +102,7 @@ if (!isset($_SESSION["adminname"])) {
 ?>
 
 
-
+<!--Adding ADMINS-->
 <div class="row-2">
     <div class="col">
         <div class="card">

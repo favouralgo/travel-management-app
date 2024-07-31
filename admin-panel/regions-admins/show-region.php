@@ -17,6 +17,7 @@ $allRegions = $regionResult->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
+<!--HTML for Region display. Data is dynamically fetched and displayed-->
 <div class="row-2">
   <div class="col">
     <div class="card">

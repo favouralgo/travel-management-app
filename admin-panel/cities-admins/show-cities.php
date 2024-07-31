@@ -20,6 +20,8 @@ $cityResult = $cities->get_result();
 $allCities = $cityResult->fetch_all(MYSQLI_ASSOC);
 
 ?>
+
+<!--Data fetched is dynamically displayed-->
 <div class="row-2">
   <div class="col">
     <div class="card">
@@ -58,8 +60,14 @@ $allCities = $cityResult->fetch_all(MYSQLI_ASSOC);
   </div>
 </div>
 <?php require "../layout/footer.php"; ?>
+
+<!--SweetAlert library-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--jQuery library-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--Script for displaying errors using SweetAlert-->
 <script>
 function confirmDelete(id) {
     Swal.fire({
