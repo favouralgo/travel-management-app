@@ -10,6 +10,6 @@ session_unset();
 session_destroy();
 
 // Redirect to login page or any other page
-header("Location: http://localhost/wooxtravel/admin-panel/admins/login-admins.php");
+header("Location: http://51.20.181.20/wooxtravel/admin-panel/admins/login-admins.php");
 // exit;
 ?>

@@ -3,7 +3,7 @@ session_start();
 require '../config/connection.php';
 
 // Define APPURL
-define("APPURL", "http://localhost/wooxtravel/");
+define("APPURL", "http://51.20.181.20/wooxtravel/");
 $errors = []; // Initialize errors array
 
 // Checks if user is already logged in

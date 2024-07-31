@@ -64,7 +64,7 @@ php artisan migrate
 
 ## Start the application (for PHP built-in server)
 ```bash 
-php -S localhost:8000 -t public
+php -S 51.20.181.20:8000 -t public
 ```
 
 
@@ -74,7 +74,7 @@ php -S localhost:8000 -t public
 # Usage (Access the application on your local machine)
 
 ```javascript
-Go to `http://localhost:8000` (or the URL where your server is running).
+Go to `http://51.20.181.20:8000` (or the URL where your server is running).
 ```
 
 

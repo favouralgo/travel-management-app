@@ -11,6 +11,6 @@ session_unset();
 session_destroy();
 
 // Redirect to login page or any other page
-header("Location: http://localhost/wooxtravel/");
+header("Location: http://51.20.181.20/wooxtravel/");
 // exit;
 ?>

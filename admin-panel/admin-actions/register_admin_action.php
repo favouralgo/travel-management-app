@@ -3,7 +3,7 @@ session_start();
 require '../../config/connection.php';
 
 // Define APPURL
-define("ADMINURL", "http://localhost/wooxtravel/admin-panel");
+define("ADMINURL", "http://51.20.181.20/wooxtravel/admin-panel");
 $errors = []; // Initialize errors array
 
 // Checks if user is already logged in

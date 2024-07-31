@@ -1,6 +1,6 @@
 <?php
     //Defined host
-    define("DB_SERVER","localhost");
+    define("DB_SERVER","51.20.181.20");
 
     //Defined username
     define("DB_USERNAME","root");

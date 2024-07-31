@@ -2,7 +2,7 @@
 require '../config/connection.php';
 
 // Define APPURL
-define("APPURL", "http://localhost/wooxtravel/");
+define("APPURL", "http://51.20.181.20/wooxtravel/");
 
 // Start the session
 session_start();

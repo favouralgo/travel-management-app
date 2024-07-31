@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-define("APPURL","http://localhost/wooxtravel/");
+define("APPURL","http://51.20.181.20/wooxtravel/");
 
 // Define route to images that are fetched from regions table
 define("REGIONIMAGES","admin-panel/regions-admins/uploads/");

@@ -1,6 +1,6 @@
 <?php
 session_start();
-define("ADMINURL", "http://localhost/wooxtravel/admin-panel/");
+define("ADMINURL", "http://51.20.181.20/wooxtravel/admin-panel/");
 define("REGIONIMAGES","uploads/");
 define("CITYIMAGES","city_images/");
 ?>
