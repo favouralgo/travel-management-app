@@ -45,7 +45,7 @@ define("CITYIMAGES","admin-panel/cities-admins/city_images/");
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.php" class="logo">
+                    <a href="../index.php" class="logo">
                         <img src="<?php echo APPURL;?>assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->

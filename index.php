@@ -127,7 +127,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
             <div class="row">
               <div class="col-lg-12">
                 <div id="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985148.404059477!2d-3.5070830954442633!3d7.946527686299236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9b6bcf8c9bf3%3A0x4a5e6dd28f6b3d41!2sGhana!5e0!3m2!1sen!2sth!4v1642869952544!5m2!1sen!2sth" width="100%" height="550px" frameborder="0" style="border:0; border-radius: 23px;" allowfullscreen=""></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985148.059477!2d-3.5070830954442633!3d7.946527686299236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9b6bcf8c9bf3%3A0x4a5e6dd28f6b3d41!2sGhana!5e0!3m2!1sen!2sth!4v1642869952544!5m2!1sen!2sth" width="100%" height="550px" frameborder="0" style="border:0; border-radius: 23px;" allowfullscreen=""></iframe>
                   </div>
               </div>
             </div>
