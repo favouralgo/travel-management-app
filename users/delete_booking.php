@@ -17,12 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $stmt->bind_param("i", $booking_id);
     if ($stmt->execute()) {
         // Redirect to the bookings page
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: dashboard.php");
         exit();
     } else {
         // Handle deletion error
         $_SESSION['error'] = "Failed to delete the booking.";
-        header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: dashboard.php");
         exit();
     }
 } else {
