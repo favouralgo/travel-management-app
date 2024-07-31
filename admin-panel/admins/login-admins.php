@@ -32,6 +32,15 @@ require '../../config/connection.php';
               <div class="col-lg-12">
                 <h4>Login</h4>
               </div>
+              <?php
+                // Display login errors if any
+                if (isset($_SESSION['login_errors'])) {
+                    foreach ($_SESSION['login_errors'] as $error) {
+                        echo "<div class='the-error-message'>$error</div>";
+                    }
+                    unset($_SESSION['login_errors']);
+                }
+              ?>
               <div class="col-md-12">
                   <fieldset>
                       <label for="Name" class="form-label">Your Email</label>
@@ -56,4 +65,22 @@ require '../../config/connection.php';
       </div>
     </div>
   </div>
+  <style>
+    .the-error-message { 
+        color: red; 
+        margin-bottom: 10px;
+      }
+  </style>
+  <!--The JavaScript snippet below ensures the error and success message disappears after 5 seconds -->
+  <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const errorMessage = document.querySelector('.the-error-message');
+
+            if (errorMessage) {
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+  </script>
 <?php require '../../includes/footer.php'; ?>
