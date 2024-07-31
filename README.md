@@ -8,7 +8,7 @@ Whether you're a frequent traveler or planning a once-in-a-lifetime trip, this a
 
 
 
-## Author
+# Author
 
 - [Favour Madubuko](https://www.github.com/favouralgo)
 
@@ -80,7 +80,7 @@ Go to `http://51.20.181.20:8000` (or the URL where your server is running).
 
 # Deployment
 
-Deployed on -------- and can be accessed here: 
+Deployed on AWS EC2 and can be accessed here: http://51.20.181.20/wooxtravel/
 
 
 
