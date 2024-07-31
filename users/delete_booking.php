@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
     $stmt->bind_param("i", $booking_id);
     if ($stmt->execute()) {
         $stmt->close();
-        $user_id = $_SESSION['id'];
+        $user_id = $_SESSION['user_id'];
         header("Location: dashboard.php?id=" . $user_id);
         exit();
     }
