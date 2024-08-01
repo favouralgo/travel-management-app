@@ -26,9 +26,9 @@ Whether you're a frequent traveler or planning a once-in-a-lifetime trip, this a
 
 LAMP stack was used
 
-**Client:** HTML/CSS, JavaScript, jQueryApache 
+**Client:** HTML/CSS, JavaScript, jQuery
 
-**Server:** MariaDB, Apache, PHP, XAMPP
+**Server:** MariaDB, Apache, PHP
 
 
 # Installation
