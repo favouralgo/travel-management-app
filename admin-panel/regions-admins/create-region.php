@@ -21,7 +21,7 @@ if (!isset($_SESSION["adminname"])) {
         $error = "Some inputs are empty";
     } else {
         // Handle file upload
-        $target_dir = "uploads/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0755, true);
         }

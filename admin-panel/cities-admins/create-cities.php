@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         $region_id = $_POST['region_id'];
 
         // Handle file upload
-        $target_dir = "city_images/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "city_images/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0755, true);
         }
