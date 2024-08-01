@@ -63,7 +63,7 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
       <nav>
         <div class="controls">
         <?php foreach($regions as $region): ?>
-          <label for="banner<?php echo $region['id']; ?>"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text"><?php echo $region['id']; ?></span></label>
+          <label for="banner<?php echo $region['id']; ?>"><span class="progressbar"><span class="progressbar-fill"></span></span><span class="text"><?php echo $region['name']; ?></span></label>
         <?php endforeach; ?>
         </div>
       </nav>
