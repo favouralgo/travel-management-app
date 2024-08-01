@@ -35,15 +35,15 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="row">
                       <div class="col-lg-3 col-sm-6 col-6">
         <!--Dynamically fetch data from database-->
-                        <!-- <i class="fa fa-user"></i> -->
+                        <!-- Population -->
                         <h4><span>Population:</span><br><?php echo $region['population']; ?></h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
-                        <!-- <i class="fa fa-globe"></i> -->
+                        <!-- Landmark -->
                         <h4><span>Landmark:</span><br><?php echo $region['landmark']; ?></h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
-                        <!-- <i class="fa fa-home"></i> -->
+                        <!-- Average price from joined tables -->
                         <h4><span>AVG Price:</span><br>GHC <?php echo $region['average_price']; ?></h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
