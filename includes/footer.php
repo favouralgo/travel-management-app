@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-12">
           <p>Copyright © 2025 <a href="#">WooX Travel</a> Company. All rights reserved. A webtech production 
-          <br>Developed by: <a href="mailto:favourmdev@email.com?subject=Development%20Issue&body=Hi%20Favour">favourmdev@email.com</a> Referenced from: <a href="https://themewagon.com target="_blank" >ThemeWagon</a></p>
+          <br>Developed by: <a href="mailto:favourmdev@email.com?subject=Development%20Issue&body=Hi%20Favour">favourmdev@email.com</a> Design referenced from: <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
           <!-- <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a> Distribution: <a href="https://themewagon.com target="_blank" >ThemeWagon</a></p> -->
         </div>
       </div>
