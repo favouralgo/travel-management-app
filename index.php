@@ -33,17 +33,17 @@ $regions = $result->fetch_all(MYSQLI_ASSOC);
                 <div class="col-lg-12">
                   <div class="more-info">
                     <div class="row">
-                      <div class="col-lg-3 col-sm-6 col-6">
+                      <div class="col-lg-3 col-sm-6 col-6 text-center">
         <!--Dynamically fetch data from database-->
                         <i class="fa fa-user fa-2x mb-2"></i>
                         <h4><span>Population:</span><br><?php echo $region['population']; ?></h4>
                       </div>
-                      <div class="col-lg-3 col-sm-6 col-6 fa-2x mb-2">
-                        <i class="fa fa-globe"></i>
+                      <div class="col-lg-3 col-sm-6 col-6 text-center">
+                        <i class="fa fa-globe fa-2x mb-2"></i>
                         <h4><span>Landmark:</span><br><?php echo $region['landmark']; ?></h4>
                       </div>
-                      <div class="col-lg-3 col-sm-6 col-6 fa-2x mb-2">
-                        <i class="fa fa-home"></i>
+                      <div class="col-lg-3 col-sm-6 col-6 text-center">
+                        <i class="fa fa-home fa-2x mb-2"></i>
                         <h4><span>AVG Price:</span><br>GHC <?php echo $region['average_price']; ?></h4>
                       </div>
                       <div class="col-lg-3 col-sm-6 col-6">
