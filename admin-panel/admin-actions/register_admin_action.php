@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
+    } elseif (is_numeric($adminname)) {
+        $errors[] = "Your name should not be numbers only.";
     } elseif (is_numeric($email)) {
         $errors[] = "Email cannot be numeric.";
-    } elseif (is_numeric($first_name) || is_numeric($last_name)) {
-        $errors[] = "Your name should not be numbers only.";
     } elseif (!preg_match("/^[a-zA-Z0-9._%+-]+@(yahoo\.com|gmail\.com)$/", $email)) {
         $errors[] = "Email must end with @yahoo.com or @gmail.com.";
     } elseif ($password !== $confirm_password) {

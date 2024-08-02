@@ -93,7 +93,7 @@ Deployed on AWS EC2 and can be accessed here: http://51.20.181.20/wooxtravel/
 
 - A third eye is always good, no-one knows it all. If we knew, we would not be learning.
 
-- I encountered errors whil trying the unit testing. I should focus more on learning how to do it well. Very challenging for me.
+- I encountered errors while trying the unit testing. I should focus more on learning how to do it well. Very challenging for me.
 
 
 # Acknowledgements
