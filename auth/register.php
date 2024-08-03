@@ -5,68 +5,41 @@ $errors = [];
 $signup_data = [];
 $signup_success = false;
 
-
-if (isset($_SESSION['signup_errors'])) {
-    $errors = $_SESSION['signup_errors'];
-    unset($_SESSION['signup_errors']);
-}
-
-if (isset($_SESSION['signup_data'])) {
-    $signup_data = $_SESSION['signup_data'];
-    unset($_SESSION['signup_data']);
-}
-
-if (isset($_SESSION['signup_success'])) {
-    $signup_success = $_SESSION['signup_success'];
-    unset($_SESSION['signup_success']);
-}
-
+// Remove the PHP session handling for errors and success messages as we'll handle this with AJAX
 ?>
-
 
 <div class="reservation-form">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="reservation-form" method="POST" role="search" action="../actions/register_action.php">
+                <form id="registration-form" method="POST">
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Register</h4>
                         </div>
-                        <?php if ($signup_success): ?>
-                            <div class="the-success-message"><h2>Registration successful! You can now sign in.</h2></div>
-                            <?php endif; ?>
-                        <?php if (!empty($errors)): ?>
-                        <div class="the-error-message">
-                            <ul>
-                            <?php foreach ($errors as $error): ?>
-                                <li><?php echo htmlspecialchars($error); ?></li>
-                            <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <?php endif; ?>
+                        <div id="message"></div>
                         <div class="col-md-12">
                             <fieldset>
                                 <label for="Name" class="form-label">Name</label>
-                                <input type="text" name="username" class="username" placeholder="Enter your name" value="<?= isset($signup_data['username']) ? htmlspecialchars($signup_data['username']) : '' ?>" required>
+                                <input type="text" name="username" id="username" class="username" placeholder="Enter your name" required>
                             </fieldset>
                         </div>
                         <div class="col-md-12">
                             <fieldset>
                                 <label for="Name" class="form-label">Your Email</label>
-                                <input type="text" name="email" class="email" placeholder="Enter your email" autocomplete="on" value="<?= isset($signup_data['email']) ? htmlspecialchars($signup_data['email']) : '' ?>" required>
+                                <input type="text" name="email" id="email" class="email" placeholder="Enter your email" autocomplete="on" required>
                             </fieldset>
                         </div>
                         <div class="col-md-12">
                             <fieldset>
                                 <label for="Name" class="form-label">Your Password</label>
-                                <input type="password" name="password" class="password" placeholder="Your password" autocomplete="on" required>
+                                <input type="password" name="password" id="password" class="password" placeholder="Your password" autocomplete="on" required>
                             </fieldset>
                         </div>
                         <div class="col-md-12">
                             <fieldset>
                                 <label for="Name" class="form-label">Confirm Password</label>
-                                <input type="password" name="confirm_password" class="password" placeholder="Confirm your password" autocomplete="on" required>
+                                <input type="password" name="confirm_password" id="confirm_password" class="password" placeholder="Confirm your password" autocomplete="on" required>
                             </fieldset>
                         </div>
                         <div class="col-lg-12">
@@ -81,36 +54,60 @@ if (isset($_SESSION['signup_success'])) {
     </div>
 </div>
 
-<!--The class style is referenced here for display to the users-->
 <style>
-    .the-error-message { 
+    .error-message { 
         color: red; 
         margin-bottom: 10px;
     }
-    .the-success-message { 
+    .success-message { 
         color: green; 
         margin-bottom: 10px;
     }
 </style>
 
-<!--The JavaScript snippet below ensures the error and success message disappears after 5 seconds -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const successMessage = document.querySelector('.the-success-message');
-        const errorMessage = document.querySelector('.the-error-message');
-
-        if (successMessage) {
-            setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 5000);
-        }
-
-        if (errorMessage) {
-            setTimeout(() => {
-            errorMessage.style.display = 'none';
-        }, 5000);
-        }
+$(document).ready(function() {
+    $('#registration-form').submit(function(e) {
+        e.preventDefault();
+        
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        
+        $.ajax({
+            url: '../actions/register_action.php',
+            type: 'POST',
+            data: {
+                username: username,
+                email: email,
+                password: password,
+                confirm_password: confirm_password
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $('#message').html('<div class="success-message">' + response.message + '</div>');
+                    $('#registration-form')[0].reset();
+                    setTimeout(function() {
+                        window.location.href = '../auth/login.php';
+                    }, 3000);
+                } else {
+                    var errorHtml = '<div class="error-message"><ul>';
+                    $.each(response.errors, function(index, error) {
+                        errorHtml += '<li>' + error + '</li>';
+                    });
+                    errorHtml += '</ul></div>';
+                    $('#message').html(errorHtml);
+                }
+            },
+            error: function() {
+                $('#message').html('<div class="error-message">An error occurred. Please try again.</div>');
+            }
+        });
     });
+});
 </script>
 
 <?php require '../includes/footer.php'; ?>
