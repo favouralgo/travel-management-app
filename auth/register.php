@@ -101,8 +101,8 @@ $(document).ready(function() {
                     errorHtml += '</ul></div>';
                     $('#message').html(errorHtml);
                     setTimeout(function() {
-                    document.querySelector('.the-error-message').style.display = 'none';
-                }, 5000);
+                    $('.error-message').fadeOut('slow');
+                    }, 5000);
                 }
             },
             error: function() {
