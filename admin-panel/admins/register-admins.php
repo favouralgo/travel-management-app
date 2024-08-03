@@ -7,22 +7,6 @@ $errors = [];
 $signup_data = [];
 $signup_success = false;
 
-// Error handling using sessions and arrays
-if (isset($_SESSION['signup_errors'])) {
-    $errors = $_SESSION['signup_errors'];
-    unset($_SESSION['signup_errors']);
-}
-
-if (isset($_SESSION['signup_data'])) {
-    $signup_data = $_SESSION['signup_data'];
-    unset($_SESSION['signup_data']);
-}
-
-if (isset($_SESSION['signup_success'])) {
-    $signup_success = $_SESSION['signup_success'];
-    unset($_SESSION['signup_success']);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +32,7 @@ if (isset($_SESSION['signup_success'])) {
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="reservation-form" method="POST" role="search" action="../admin-actions/register_admin_action.php">
+                <form id="reservation-form" method="POST" role="search">
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Register</h4>
@@ -115,22 +99,52 @@ if (isset($_SESSION['signup_success'])) {
     }
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const successMessage = document.querySelector('.the-success-message');
-        const errorMessage = document.querySelector('.the-error-message');
-
-        if (successMessage) {
-            setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 5000);
-        }
-
-        if (errorMessage) {
-            setTimeout(() => {
-            errorMessage.style.display = 'none';
-        }, 5000);
-        }
+$(document).ready(function() {
+    $('#reservation-form').submit(function(e) {
+        e.preventDefault();
+        
+        var adminname = $('#adminname').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        
+        $.ajax({
+            url: '../admin-actions/register_admin_action.php',
+            type: 'POST',
+            data: {
+                username: username,
+                email: email,
+                password: password,
+                confirm_password: confirm_password
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $('#message').html('<div class="success-message">' + response.message + '</div>');
+                    $('#reservation-form')[0].reset();
+                    setTimeout(function() {
+                        window.location.href = '../admins/login-admins.php';
+                    }, 3000);
+                } else {
+                    var errorHtml = '<div class="error-message"><ul>';
+                    $.each(response.errors, function(index, error) {
+                        errorHtml += '<li>' + error + '</li>';
+                    });
+                    errorHtml += '</ul></div>';
+                    $('#message').html(errorHtml);
+                    setTimeout(function() {
+                    $('.error-message').fadeOut('slow');
+                    }, 5000);
+                }
+            },
+            error: function() {
+                $('#message').html('<div class="error-message">An error occurred. Please try again.</div>');
+            }
+        });
     });
+});
 </script>
+
 <?php require '../../includes/footer.php'; ?>

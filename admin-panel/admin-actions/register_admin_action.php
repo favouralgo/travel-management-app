@@ -5,11 +5,9 @@ require '../../config/connection.php';
 // Define APPURL
 define("ADMINURL", "http://51.20.181.20/wooxtravel/admin-panel");
 $errors = []; // Initialize errors array
+$response = ['success' => false, 'errors' => [], 'message' => '']; // Initialize response array
 
-// Checks if user is already logged in
-if (!isset($_SESSION['adminname'])) {
-    header("Location: " . ADMINURL);
-}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize inputs
@@ -31,6 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Email must end with @yahoo.com or @gmail.com.";
     } elseif ($password !== $confirm_password) {
         $errors[] = "Passwords do not match.";
+    } elseif (strlen($password) < 8 || 
+            !preg_match('/[A-Z]/', $password) || 
+            !preg_match('/[a-z]/', $password) || 
+            !preg_match('/[0-9]/', $password) || 
+            !preg_match('/[\W_]/', $password)) {
+        $errors[] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.";
     }
 
     // Check for empty fields
@@ -44,30 +48,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         
         if ($result->num_rows > 0) {
-            $errors[] = "Admin already exists";
-        } else {       
-            // Insert the new admin into the database with a role of 1 for super admins
+            $errors[] = "Admin already signed up";
+        } else {
+            // Insert the new admin into the database
             $stmt = $connection->prepare("INSERT INTO admins (adminname, email, mypassword, role) VALUES (?, ?, ?, 1)");
             $stmt->bind_param("sss", $adminname, $email, $hashed_password);
 
             if ($stmt->execute()) {
-                header("Location: ../admins/login-admins.php");
-                exit();
+                $response['success'] = true;
+                $response['message'] = "Registration successful! You can now sign in.";
             } else {
                 $errors[] = "Error: " . $stmt->error;
             }
         }
     }
-// If there was an error, use JavaScript to alert the user and redirect back to the form
-if (count($errors) > 0){
-    $_SESSION['signup_errors'] = $errors;
-    $_SESSION['signup_data'] = [
-        'username' => $username,
-        'email' => $email
-    ];
-    header("Location: ../admins/register-admins.php");
-    exit();
+
+    if (count($errors) > 0){
+        $response['errors'] = $errors;
+    }
 }
-}
+
 $connection->close();
+
+// Send JSON response
+header('Content-Type: application/json');
+echo json_encode($response);
+exit();
 ?>
