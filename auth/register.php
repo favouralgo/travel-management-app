@@ -1,18 +1,18 @@
 <?php
 require '../includes/header.php'; 
+require "../config/core.php";
 
 $errors = [];
 $signup_data = [];
 $signup_success = false;
 
-// Remove the PHP session handling for errors and success messages as we'll handle this with AJAX
 ?>
 
 <div class="reservation-form">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="registration-form" method="POST">
+                <form id="reservation-form" name="gs" role="search" method="POST">
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Register</h4>
@@ -68,7 +68,7 @@ $signup_success = false;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#registration-form').submit(function(e) {
+    $('#reservation-form').submit(function(e) {
         e.preventDefault();
         
         var username = $('#username').val();
@@ -89,7 +89,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.success) {
                     $('#message').html('<div class="success-message">' + response.message + '</div>');
-                    $('#registration-form')[0].reset();
+                    $('#reservation-form')[0].reset();
                     setTimeout(function() {
                         window.location.href = '../auth/login.php';
                     }, 3000);
